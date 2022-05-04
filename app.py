@@ -13,6 +13,7 @@ import logging
 from classes import Report, ReportType
 
 from util import Commands, Keys
+from language import Farsi as fa
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -39,16 +40,23 @@ async def handleBot(client: Client, message: Message):
             if cmdParts[0] == Commands.COST:
                 # Get the reports for the last 30 days and calculate expenditure and income
                 now = datetime.now()
-                messages = await client.get_chat_history(offset_date = datetime(month=now.month - 1))
+                msgs = await client.get_chat_history(offset_date = datetime(month=now.month - 1))
                 sum = 0.0
-                for message in messages:
-                    report = Report(message.text)
+                for msg in msgs:
+                    report = Report(msg.text)
                     if report.type == ReportType.EXPENSE:
                         sum += report.value
-                await message.reply(f"Your expenditure for the last 30 days: {sum}")
+                await message.reply(f"{fa.your_expenditure_for_the_last_} 30 {fa._days} {fa.is_equal_to_} {sum} {fa.TOMANS}")
             elif cmdParts[0] == Commands.INCOME:
-                pass
-                #TODO: Add Dockerfile and GitHub action
+                now = datetime.now()
+                msgs = await client.get_chat_history(offset_date = datetime(month=now.month - 1))
+                sum = 0.0
+                for msg in msgs:
+                    report = Report(msg.text)
+                    if report.type == ReportType.INCOME:
+                        sum += report.value
+                await message.reply(f"{fa.your_income_for_the_last_} 30 {fa._days} {fa.is_equal_to_} {sum}")
+
             
 
 app.run()
