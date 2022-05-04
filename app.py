@@ -29,19 +29,24 @@ logger.addHandler(ch)
 
 
 
-api_id = os.getenv(Keys.API_ID)
-api_hash = os.getenv(Keys.API_HASH)
+debugpy.listen(('app', 5678))
 
-if not api_id or not api_hash:
-    logger.error(f"{Keys.API_ID} or {Keys.API_HASH} environment variables not specified. Exiting...")
+
+apiId = os.getenv(Keys.API_ID)
+apiHash = os.getenv(Keys.API_HASH)
+botToken = os.getenv(Keys.BOT_TOKEN)
+
+if not apiId or not apiHash or not botToken:
+    logger.error(f"{Keys.API_ID} or {Keys.API_HASH} or {Keys.BOT_TOKEN} environment variables not specified. Exiting...")
     exit(1)
 
 
-app = Client("accounting_bot", api_id, api_hash)
+
+app = Client("session/accounting_bot", apiId, apiHash, bot_token=botToken)
 
 
 
-@app.on_message(filters.channel | filters.group)
+@app.on_message((filters.channel | filters.group) & filters.command(["start", "cost", "income"]))
 async def handleBot(client: Client, message: Message):
     # Return if not a member
     me = await client.get_chat_member(message.chat.id, 'me')
@@ -57,7 +62,7 @@ async def handleBot(client: Client, message: Message):
                 await message.reply(lang.please_wait_until_your_cost_is_calculated)
                 # Get the reports for the last 30 days and calculate expenditure and income
                 now = datetime.now()
-                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(month=now.month - 1))
+                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day))
                 sum = 0.0
                 for msg in msgs:
                     report = Report(msg.text)
@@ -68,7 +73,7 @@ async def handleBot(client: Client, message: Message):
             elif cmdParts[0] == Commands.INCOME:
                 await message.reply(lang.please_wait_until_your_income_is_calculated)
                 now = datetime.now()
-                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(month=now.month - 1))
+                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day))
                 sum = 0.0
                 for msg in msgs:
                     report = Report(msg.text)
@@ -80,7 +85,6 @@ async def handleBot(client: Client, message: Message):
             
 
 
-debugpy.listen(('localhost', 5678))
 logger.info(f"Starting {app.name}")
 app.run()
 
