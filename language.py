@@ -6,3 +6,4 @@ class Farsi:
     is_equal_to_ = "برابر است با"
     please_wait_until_your_cost_is_calculated = "لطفا صبر کنید تا مخارج شما محاسبه شود"
     please_wait_until_your_income_is_calculated = "لطفا صبر کنید تا درآمد شما محاسبه شود"
+    processing_ = "در حال پردازش"

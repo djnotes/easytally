@@ -1,6 +1,8 @@
 from enum import Enum
 import re
 
+from util import digitize
+
 class ReportType(Enum):
     EXPENSE = 0
     INCOME = 1
@@ -16,12 +18,12 @@ class Report:
         expenseMatch = re.search(self.expensePattern, text)
         if expenseMatch:
             self.type = ReportType.EXPENSE
-            self.value = expenseMatch.group('value')
+            self.value = digitize(expenseMatch.group('value'))
         else:
             incomeMatch = re.search(self.incomePattern, text)
             if incomeMatch:
                 self.type = ReportType.INCOME
-                self.value = incomeMatch.group('value')
+                self.value = digitize(incomeMatch.group('value'))
         
         if not self.type:
             # If no pattern matches, it is considered invalid report

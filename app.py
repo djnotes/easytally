@@ -55,32 +55,29 @@ async def handleBot(client: Client, message: Message):
         return
     logger.info(f"New message: {message}")
     chatId = message.chat.id
-    if message.command:
-        cmdParts = message.command
-        if len(cmdParts) == 1:
-            if cmdParts[0] == Commands.COST:
-                await message.reply(lang.please_wait_until_your_cost_is_calculated)
-                # Get the reports for the last 30 days and calculate expenditure and income
-                now = datetime.now()
-                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day))
-                sum = 0.0
-                for msg in msgs:
-                    report = Report(msg.text)
-                    logger.debug(f"Processing {report.text}")
-                    if report.type == ReportType.EXPENSE:
-                        sum += report.value
-                await message.reply(f"{lang.your_expenditure_for_the_last_} 30 {lang._days} {lang.is_equal_to_} {sum} {lang.TOMANS}")
-            elif cmdParts[0] == Commands.INCOME:
-                await message.reply(lang.please_wait_until_your_income_is_calculated)
-                now = datetime.now()
-                msgs = await client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day))
-                sum = 0.0
-                for msg in msgs:
-                    report = Report(msg.text)
-                    logger.debug(f"Processing {report.text}")
-                    if report.type == ReportType.INCOME:
-                        sum += report.value
-                await message.reply(f"{lang.your_income_for_the_last_} 30 {lang._days} {lang.is_equal_to_} {sum}")
+    cmdParts = message.command
+    if len(cmdParts) == 1:
+        if cmdParts[0] == Commands.COST:
+            await message.reply(lang.please_wait_until_your_cost_is_calculated)
+            # Get the reports for the last 30 days and calculate expenditure and income
+            now = datetime.now()
+            sum = 0.0
+            async for msg in client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day)):
+                report = Report(msg.text)
+                logger.debug(f"{lang.processing_} {report.text}")
+                if report.type == ReportType.EXPENSE:
+                    sum += report.value
+            await message.reply(f"{lang.your_expenditure_for_the_last_} 30 {lang._days} {lang.is_equal_to_} {sum} {lang.TOMANS}")
+        elif cmdParts[0] == Commands.INCOME:
+            await message.reply(lang.please_wait_until_your_income_is_calculated)
+            now = datetime.now()
+            sum = 0.0
+            async for msg in client.get_chat_history(chat_id = chatId, offset_date = datetime(now.year, now.month - 1, now.day)):
+                report = Report(msg.text)
+                logger.debug(f"Processing {report.text}")
+                if report.type == ReportType.INCOME:
+                    sum += report.value
+            await message.reply(f"{lang.your_income_for_the_last_} 30 {lang._days} {lang.is_equal_to_} {sum}")
 
             
 
