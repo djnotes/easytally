@@ -23,6 +23,7 @@ class Keys:
 class Commands:
     START = "start"
     COST = "cost"
+    INCOME = "income"
     
 def digitize(text: str) -> str:
     """
