@@ -5,6 +5,7 @@ sent to a channel.
 
 """
 
+from pyrogram.handlers import MessageHandler
 from datetime import datetime
 from warnings import filters
 from pyrogram.types import Message
@@ -13,6 +14,7 @@ from pyrogram import Client,filters
 import logging
 from classes import Report, ReportType
 import debugpy
+from pyrogram import idle
 
 from util import Commands, Keys
 from language import Farsi as lang
@@ -42,12 +44,13 @@ if not apiId or not apiHash or not botToken:
 
 
 
-app = Client("session/accounting_bot", apiId, apiHash, bot_token=botToken)
+app = Client("session/easytally", apiId, apiHash, bot_token=botToken)
 
 
 
-@app.on_message((filters.channel | filters.group) & filters.command(["start", "cost", "income"]))
+# @app.on_message((filters.channel | filters.group) & filters.command(["start", "cost", "income"]))
 async def handleBot(client: Client, message: Message):
+    await message.reply(message.text)
     # Return if not a member
     me = await client.get_chat_member(message.chat.id, 'me')
     logger.debug(f"Me: {me}")
@@ -79,9 +82,18 @@ async def handleBot(client: Client, message: Message):
                     sum += report.value
             await message.reply(f"{lang.your_income_for_the_last_} 30 {lang._days} {lang.is_equal_to_} {sum}")
 
-            
+
+
 
 
 logger.info(f"Starting {app.name}")
-app.run()
+app.start()
 
+me = app.get_me()
+app.send_message('djnotes', f'Hello from {me.first_name}')
+
+app.add_handler(MessageHandler(handleBot))
+
+idle()
+
+app.stop()

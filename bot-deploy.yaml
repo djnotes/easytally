@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - image: ghcr.io/djnotes/easytally:main
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: easytally
         resources:
           requests:
@@ -52,11 +52,19 @@ spec:
               secretKeyRef:
                 name: bot-secret
                 key: easytally-bot-token
+        volumeMounts:
+         - mountPath: /app/session
+           name: mypd
+      volumes:
+        - name: mypd
+          persistentVolumeClaim:
+            claimName: easytally-session-pvc
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+
       
 status:
   observedGeneration: 1
