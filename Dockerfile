@@ -1,13 +1,13 @@
-FROM docker.io/library/fedora:36
+FROM docker.io/library/alpine:3.16.0
 
-RUN dnf update -y \
-&& dnf install -y pip
+RUN apk update \
+&& apk add python3 py3-pip
 
 COPY . /app
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 
 
