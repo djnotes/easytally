@@ -29,7 +29,7 @@ logger.addHandler(ch)
 
 
 
-debugpy.listen(('app', 5678))
+# debugpy.listen(('easytally', 5678))
 
 
 apiId = os.getenv(Keys.API_ID)
