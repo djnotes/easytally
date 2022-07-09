@@ -1,11 +1,11 @@
 from pyrogram import Client,__version__
 from bot.logger import BotLogger
 
-from util import Keys
+from bot.util import Keys
 from bot import *
 
 class TgUser(Client):
-    async def __init__(self):
+    def __init__(self):
         super().__init__(
             name = Keys.USER_SESSION,
             api_id = apiId,

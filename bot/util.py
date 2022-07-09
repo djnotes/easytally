@@ -25,6 +25,7 @@ class Keys:
     BOT_SESSION = "bot"
     USER_SESSION = "user"
     LOG_FILE = "application.log"
+    NUM_WORKERS = 4
 
 class Cmd:
     START = "start"

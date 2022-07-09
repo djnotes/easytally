@@ -4,12 +4,12 @@ from pyrogram.types import Message
 from bot.logger import BotLogger
 from bot.report import Report, ReportType
 from bot.user import TgUser
-from util import Cmd
+from bot.util import Cmd
 from bot.language import Farsi as lang
 from bot import *
 
 
-@Client.on_message(filtrs = filters.private & filters.command(Cmd.INCOME))
+@Client.on_message(filters = filters.private & filters.command(Cmd.INCOME))
 async def calculate_cost(client: Client, message: Message):
     userClient = TgUser()
     logger = BotLogger(__name__, logging.DEBUG)

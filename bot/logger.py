@@ -1,6 +1,6 @@
 import logging
 
-from util import Keys
+from bot.util import Keys
 
 
 
@@ -10,7 +10,7 @@ class BotLogger(logging.Logger):
     fh.setFormatter(formatter)
     ch = logging.StreamHandler()
     ch.setFormatter(formatter)
-    async def __init__(self, name: str, level = logging.DEBUG) -> None:
+    def __init__(self, name: str, level = logging.DEBUG) -> None:
         super().__init__(name, level)
         self.addHandler(self.fh)
         self.addHandler(self.ch)

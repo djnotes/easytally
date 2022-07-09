@@ -1,7 +1,7 @@
 from enum import Enum
 import re
 
-from util import digitize
+from bot.util import digitize
 
 class ReportType(Enum):
     EXPENSE = 0

@@ -1,18 +1,21 @@
 from pyrogram import Client,__version__
 from bot.logger import BotLogger
 
-from util import Keys
+from bot.util import Keys
 from bot import *
 
 class TgBot(Client):
-    async def __init__(self):
+    def __init__(self):
         super().__init__(
-            name = Keys.USER_SESSION,
+            name = Keys.BOT_SESSION,
             api_id = apiId,
             api_hash = apiHash,
             bot_token=botToken,
             session_string = sessionString,
-            in_memory=True
+            in_memory=True,
+            plugins = {
+                "root": "bot/plugins"
+            }
         )
         self.logger = BotLogger(__name__, logging.INFO)
 

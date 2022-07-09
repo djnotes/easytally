@@ -3,13 +3,13 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from bot.logger import BotLogger
 from bot.report import *
-from language import Farsi as lang
+from bot.language import Farsi as lang
 from bot import *
-from util import Cmd
+from bot.util import Cmd
 from bot.user import TgUser
 
 
-@Client.on_message(filtrs = filters.private & filters.command(Cmd.COST))
+@Client.on_message(filters = filters.private & filters.command(Cmd.COST))
 async def calculate_cost(client: Client, message: Message):
     logger = BotLogger(__name__, logging.DEBUG)
     await message.reply("Calculating cost: Coming soon")
