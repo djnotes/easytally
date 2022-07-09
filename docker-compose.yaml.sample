@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  app:
+    image: ghcr.io/djnotes/easytally:main
+
+    volumes:
+      - type: bind
+        source: . 
+        target: /app 
+    
+    ports:
+      - 5678:5678
+    
+    
+    
+    environment:
+    # Fill in before running
+      - API_ID=
+      - API_HASH=
+      - BOT_TOKEN=
+      - SESSION_STRING=

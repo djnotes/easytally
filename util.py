@@ -18,6 +18,10 @@ class Keys:
     API_ID = "API_ID"
     API_HASH = "API_HASH"
     BOT_TOKEN = "BOT_TOKEN"
+    SESSION_STRING = "SESSION_STRING"
+    DB_USER = "DB_USER"
+    DB_PASSWORD = "DB_PASSWORD"
+    DB_HOST = "DB_HOST"
     
 
 class Commands:

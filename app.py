@@ -19,6 +19,7 @@ from pyrogram import idle
 from util import Commands, Keys
 from language import Farsi as lang
 
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler("application.log")
@@ -38,14 +39,19 @@ apiId = os.getenv(Keys.API_ID)
 apiHash = os.getenv(Keys.API_HASH)
 botToken = os.getenv(Keys.BOT_TOKEN)
 
+sessionString = os.getenv(Keys.SESSION_STRING)
+
+
 if not apiId or not apiHash or not botToken:
     logger.error(f"{Keys.API_ID} or {Keys.API_HASH} or {Keys.BOT_TOKEN} environment variables not specified. Exiting...")
     exit(1)
 
 
 
-app = Client("session/easytally", apiId, apiHash, bot_token=botToken)
-
+# app = Client("session/easytally", apiId, apiHash, bot_token=botToken, session_string = sessionString,
+# in_memory=False)
+app = Client("ephemeral", apiId, apiHash, bot_token=botToken, session_string = sessionString,
+in_memory=False)
 
 
 # @app.on_message((filters.channel | filters.group) & filters.command(["start", "cost", "income"]))
@@ -86,14 +92,21 @@ async def handleBot(client: Client, message: Message):
 
 
 
+
+
+
+
+
 logger.info(f"Starting {app.name}")
 app.start()
 
 me = app.get_me()
 app.send_message('djnotes', f'Hello from {me.first_name}')
 
-app.add_handler(MessageHandler(handleBot))
+# app.add_handler(MessageHandler(handleBot, filters.private))
 
 idle()
+
+#TODO: Save session string to database here
 
 app.stop()
