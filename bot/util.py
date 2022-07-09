@@ -22,9 +22,11 @@ class Keys:
     DB_USER = "DB_USER"
     DB_PASSWORD = "DB_PASSWORD"
     DB_HOST = "DB_HOST"
-    
+    BOT_SESSION = "bot"
+    USER_SESSION = "user"
+    LOG_FILE = "application.log"
 
-class Commands:
+class Cmd:
     START = "start"
     COST = "cost"
     INCOME = "income"

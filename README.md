@@ -16,8 +16,8 @@ An example:
 ```
 
 ## Deploy To Kubernetes (Bot Login)
-- Create a secret file with key=value pairs for api-id, api-hash, and bot-token (keys are important) and save it as temp/bot
-- Create secret file with `kubectl create secrets bot-secret --from-env-file=temp/bot`
+- Create a secret file with key=value pairs for api-id, api-hash, and bot-token (keys are important) and save it as `temp/bot.env`
+- Create secret file with `kubectl create secrets bot-secret --from-env-file=temp/bot.env`
 - Apply the secret file with `kubectl apply -f temp/bot-secret.yaml`
 - Apply the bot.yaml file with `kubectl apply -f bot-deploy.yaml`
 
