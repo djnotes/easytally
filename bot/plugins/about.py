@@ -1,4 +1,3 @@
-from markdown import markdown
 from bot.util import Cmd
 from pyrogram import Client, filters
 from pyrogram.enums.parse_mode import ParseMode
