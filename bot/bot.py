@@ -1,5 +1,6 @@
-from pyrogram import Client,__version__
+from pyrogram import Client
 from bot.logger import BotLogger
+from bot.user import TgUser
 
 from bot.util import Keys
 from bot import *
@@ -11,18 +12,23 @@ class TgBot(Client):
             api_id = apiId,
             api_hash = apiHash,
             bot_token=botToken,
-            session_string = sessionString,
+            # session_string = sessionString,
             in_memory=True,
-            plugins = {
-                "root": "bot/plugins"
-            }
+            plugins = dict(
+                root = "bot/plugins"
+            )
         )
         self.logger = BotLogger(__name__, logging.INFO)
 
     async def start(self):
         await super().start()
         me = await self.get_me()
-        self.logger.info(f'@{me.username} based on Pyrogram v{__version__}')
+        self.logger.info(f'@{me.username} started')
+        user = TgUser()
+        await user.start()
+        user_info = await user.get_me()
+
+        await self.send_message(user_info.id, f" {me.first_name} started")
 
     
     async def stop(self):

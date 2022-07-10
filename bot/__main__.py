@@ -5,6 +5,11 @@ sent to a channel.
 
 """
 
+import asyncio
 from bot.bot import TgBot
+from bot.user import TgUser
+
+
+
 
 TgBot().run()

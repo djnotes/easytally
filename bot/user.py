@@ -18,7 +18,7 @@ class TgUser(Client):
     async def start(self):
         await super().start()
         me = await self.get_me()
-        self.logger.info(f'@{me.username} based on Pyrogram v{__version__}')
+        self.logger.info(f'@{me.username} started')
 
     
     async def stop(self):
