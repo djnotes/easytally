@@ -23,7 +23,7 @@
         {"url": "heroku/python"}
     ],
     "formation": {
-        "worker": {
+        "bot": {
             "quantity": 1,
             "size": "free"
         }
