@@ -33,7 +33,7 @@ class Cmd:
     COST = "cost"
     INCOME = "income"
     
-def digitize(text: str) -> str:
+def digitize(text: str) -> float:
     """
     Convert Persian (e.g. ۴) and Eastern Arabic (e.g. ٤) digits inside text to Latin numbers  
     """ 
@@ -41,5 +41,5 @@ def digitize(text: str) -> str:
     for ch in text:
         temp += DIGITS[ch] if ch in DIGITS else ch
 
-    return temp
+    return float(temp)
 
