@@ -32,6 +32,8 @@ class Cmd:
     START = "start"
     COST = "cost"
     INCOME = "income"
+    ABOUT = "about"
+    STATS = "stats"
     
 def digitize(text: str) -> float:
     """

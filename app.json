@@ -14,6 +14,9 @@
         },
         "BOT_TOKEN": {
             "description": "Get this from https://t.me/botfather"
+        },
+        "SESSION_STRING": {
+            "description": "Get this from https://github.com/SpEcHiDe/SessionMakerBot"
         }
     },
     "buildpacks": [

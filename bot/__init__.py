@@ -5,7 +5,7 @@ from bot.logger import BotLogger
 
 from bot.util import Cmd, Keys
 from bot.language import Farsi as lang
-
+from time import time
 
 
 
@@ -14,6 +14,7 @@ apiHash = os.getenv(Keys.API_HASH)
 botToken = os.getenv(Keys.BOT_TOKEN)
 
 sessionString = os.getenv(Keys.SESSION_STRING)
+startTime = 
 
 logger = BotLogger(__name__)
 
