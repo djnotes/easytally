@@ -1,7 +1,7 @@
 FROM docker.io/library/alpine:3.16.0
 
 RUN apk update \
-&& apk add python3 py3-pip
+&& apk add python3 py3-pip  git
 
 COPY . /app
 
