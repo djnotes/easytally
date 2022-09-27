@@ -2,5 +2,6 @@ docker-compose.yaml
 __pycache__/
 *.log
 session/
-temp/
 **__pycache__*
+bot.env
+bot-secret.yaml
