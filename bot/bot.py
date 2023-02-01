@@ -2,8 +2,16 @@ from pyrogram import Client
 from bot.logger import BotLogger
 from bot.user import TgUser
 
-from bot.util import Keys
+from bot.util import MY_PROXY, Keys
 from bot import *
+
+myProxy = {
+                "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
+                "hostname": "127.0.0.1",
+                "port": 1090,
+                # "username": "username",
+                # "password": "password"
+            }
 
 class TgBot(Client):
     def __init__(self):
@@ -16,7 +24,8 @@ class TgBot(Client):
             in_memory=True,
             plugins = dict(
                 root = "bot/plugins"
-            )
+            ),
+             proxy = MY_PROXY
         )
         self.logger = BotLogger(__name__, logging.INFO)
 

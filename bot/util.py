@@ -45,3 +45,11 @@ def digitize(text: str) -> float:
 
     return float(temp)
 
+
+MY_PROXY = {
+                "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
+                "hostname": "127.0.0.1",
+                "port": 1090,
+                "username": "",
+                "password": ""
+        }

@@ -1,7 +1,7 @@
 from pyrogram import Client,__version__
 from bot.logger import BotLogger
 
-from bot.util import Keys
+from bot.util import MY_PROXY, Keys
 from bot import *
 
 class TgUser(Client):
@@ -11,7 +11,8 @@ class TgUser(Client):
             api_id = apiId,
             api_hash = apiHash,
             session_string = sessionString,
-            in_memory = True
+            in_memory = True,
+            proxy = MY_PROXY
         )
         self.logger = BotLogger(__name__, logging.INFO)
 
