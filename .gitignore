@@ -5,3 +5,4 @@ session/
 **__pycache__*
 bot.env
 bot-secret.yaml
+db.env

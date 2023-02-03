@@ -5,13 +5,6 @@ from bot.user import TgUser
 from bot.util import MY_PROXY, Keys
 from bot import *
 
-myProxy = {
-                "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
-                "hostname": "127.0.0.1",
-                "port": 1090,
-                # "username": "username",
-                # "password": "password"
-            }
 
 class TgBot(Client):
     def __init__(self):
