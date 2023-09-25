@@ -2,7 +2,10 @@ version: "3.9"
 services:
   app:
     image: ghcr.io/djnotes/easytally:main
-
+    build:
+      context: bot
+      dockerfile: ./Containerfile
+    
     volumes:
       - type: bind
         source: . 
@@ -13,9 +16,5 @@ services:
     
     
     
-    environment:
-    # Fill in before running
-      - API_ID=
-      - API_HASH=
-      - BOT_TOKEN=
-      - SESSION_STRING=
+    env_file: env.ini
+      

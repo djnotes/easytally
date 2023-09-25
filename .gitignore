@@ -3,6 +3,5 @@ __pycache__/
 *.log
 session/
 **__pycache__*
-bot.env
 bot-secret.yaml
-db.env
+env.ini
