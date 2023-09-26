@@ -1,4 +1,4 @@
-from bot.util import Cmd
+from src.util import Cmd
 from pyrogram import Client, filters
 from pyrogram.enums.parse_mode import ParseMode
 from pyrogram.types import Message

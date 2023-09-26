@@ -1,9 +1,9 @@
 from pyrogram import Client
-from bot.logger import BotLogger
-from bot.user import TgUser
+from src.logger import BotLogger
+from src.user import TgUser
 
-from bot.util import MY_PROXY, Keys
-from bot import *
+from src.util import MY_PROXY, Keys
+from src import *
 
 
 class TgBot(Client):

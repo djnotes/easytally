@@ -1,10 +1,10 @@
 import os
 import logging
-from bot.logger import BotLogger
+from src.logger import BotLogger
 
 
-from bot.util import Cmd, Keys
-from bot.language import Farsi as lang
+from src.util import Cmd, Keys
+from src.language import Farsi as lang
 import time
 
 

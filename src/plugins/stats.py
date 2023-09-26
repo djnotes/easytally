@@ -1,7 +1,7 @@
-from bot.util import Cmd
+from src.util import Cmd
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from bot import startTime
+from src import startTime
 import time
 
 @Client.on_message(

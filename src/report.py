@@ -1,8 +1,8 @@
 from enum import Enum
 import re
-from bot.logger import BotLogger
+from src.logger import BotLogger
 
-from bot.util import digitize
+from src.util import digitize
 
 class ReportType(Enum):
     COST = 0

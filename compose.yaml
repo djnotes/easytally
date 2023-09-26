@@ -6,6 +6,7 @@ services:
       context: bot
       dockerfile: ./Containerfile
     
+    
     volumes:
       - type: bind
         source: . 
@@ -18,3 +19,9 @@ services:
     
     env_file: env.ini
       
+  node1:
+    image: docker.io/library/cassandra:4.1.3
+    volumes:
+      - easytallydb:/var/lib/cassandra
+    env_file:
+      - env.ini

@@ -1,12 +1,12 @@
 import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from bot.logger import BotLogger
-from bot.report import *
-from bot.language import Farsi as lang
-from bot import *
-from bot.util import Cmd
-from bot.user import TgUser
+from src.logger import BotLogger
+from src.report import *
+from src.language import Farsi as lang
+from src import *
+from src.util import Cmd
+from src.user import TgUser
 
 
 @Client.on_message(
