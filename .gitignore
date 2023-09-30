@@ -5,3 +5,4 @@ session/
 **__pycache__*
 bot-secret.yaml
 env.ini
+.venv

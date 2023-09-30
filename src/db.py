@@ -1,7 +1,6 @@
 from cassandra.cluster import Cluster
 
-cluster = Cluster(['n1', 'n2'])
+cluster = Cluster(['node1', 'node2'])
 session = cluster.connect('easytally')
-
 
 
