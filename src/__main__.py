@@ -6,8 +6,8 @@ sent to a channel.
 """
 
 import asyncio
-from src.bot import TgBot
-from src.user import TgUser
+from bot import TgBot
+from user import TgUser
 
 
 

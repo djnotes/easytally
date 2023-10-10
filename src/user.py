@@ -1,8 +1,8 @@
 from pyrogram import Client,__version__
 from src.logger import BotLogger
 
-from src.util import Keys
-from src import *
+from util import Keys
+from . import *
 
 class TgUser(Client):
     def __init__(self):
