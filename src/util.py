@@ -27,6 +27,7 @@ class Keys:
     LOG_FILE = "application.log"
     NUM_WORKERS = 4
     ADMIN_ID = '@djnotes'
+    USER_LOGIN = "USER_LOGIN"
 
 class Cmd:
     START = "start"

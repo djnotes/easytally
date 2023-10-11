@@ -26,14 +26,17 @@ class TgBot(Client):
         await super().start()
         me = await self.get_me()
         self.logger.info(f'@{me.username} started')
-        user = TgUser()
-        await user.start()
-        user_info = await user.get_me()
-
-        await self.send_message(user_info.id, f" {me.first_name} started")
+        if os.getenv(Keys.USER_LOGIN) is not None:
+            user = TgUser()
+            await user.start()
+            user_info = await user.get_me()
+            await self.send_message(user_info.id, f" {me.first_name} started")
 
     
     async def stop(self):
         await super().stop()
         self.logger.info('Bot stopped')
     
+
+bot = TgBot()
+bot.run()
